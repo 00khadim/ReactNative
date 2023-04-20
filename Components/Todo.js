@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, SafeAreaView,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, SafeAreaView,TouchableOpacity,Image } from 'react-native';
 import React, { useState } from 'react'
 
 
@@ -20,6 +20,11 @@ const Todo=()=> {
       setInputValue('');
     }
   };
+  const handleDelete = (index) => {
+    const newListe = [...liste];
+    newListe.splice(index, 1);
+    setListe(newListe);
+  }
 
   return (
 
@@ -37,7 +42,7 @@ const Todo=()=> {
             placeholder="Entrez la to-do liste"
           />
           <View>
-            <TouchableOpacity style={styles.addButton} onPress={handleAddTodo}>
+            <TouchableOpacity onPress={handleAddTodo}>
               <Text style={styles.click}>Ajouter</Text>
             </TouchableOpacity>
           </View>
@@ -52,6 +57,13 @@ const Todo=()=> {
           {liste.map((item, index) => (
             <View key={index} style={styles.item}>
               <Text style={styles.text}>{item.todo}</Text>
+              <TouchableOpacity style={styles.ViewToDo} onPress={() => handleDelete(index)}>
+                <Image
+                        source={require("../image/delete.png")}
+                        style={styles.imageDelete}
+                    />
+                
+              </TouchableOpacity>
             </View>
           ))}
         </View>
@@ -97,6 +109,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
   },
+  viewToDo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    
+  },
   input: {
     color: 'white',
     backgroundColor: 'grey',
@@ -128,9 +145,16 @@ const styles = StyleSheet.create({
   },
   click: {
     fontWeight: 'bold',
-    color: "#white",
     color: '#fff',
     fontSize: 18,
+    backgroundColor: "blue",
+    height: 35,
+    width:100,
+    textAlign:"center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+
   },
   box: {
     fontSize: 20,
@@ -159,6 +183,15 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 14,
   },
+  imageDelete: {
+    resizeMode: 'contain',
+    height: 10,
+    width: 10,
+    padding: 10,
+    flexDirection: 'row',
+    flexWrap: 'center'    
+
+}
 });
 
 export default Todo

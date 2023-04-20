@@ -63,8 +63,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 20,
       },
-      input: {
-        color: 'white',
+    input: {
+        // color: 'white',
         backgroundColor: 'grey',
         height: 40,
         width: 230,
@@ -78,10 +78,9 @@ const styles = StyleSheet.create({
         marginEnd: 20,
     
       },
-      click: {
+    click: {
         fontWeight: 'bold',
-        color: "#white",
-        color: '#fff',
+        color: "#fff",
         fontSize: 18,
       },
 
